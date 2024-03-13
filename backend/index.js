@@ -1,5 +1,4 @@
-// backend/index.js
-const express = require('express');
+const express = require("express");
 const cors = require("cors");
 const rootRouter = require("./routes/index");
 
@@ -10,4 +9,7 @@ app.use(express.json());
 
 app.use("/api/v1", rootRouter);
 
-app.listen(3000);
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+});
