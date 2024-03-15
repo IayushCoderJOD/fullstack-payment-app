@@ -6,12 +6,15 @@ import Button from '../components/Button'
 import BottomWarning from '../components/BottomWarning'
 import axios from "axios"
 import { useNavigate } from 'react-router-dom'
+import { userLoggedIn } from '../assets/Slices'
+import { useDispatch } from 'react-redux'
 
 const Signup = () => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     return (
         <div style={{
@@ -47,6 +50,7 @@ const Signup = () => {
                             localStorage.removeItem("token")
                             localStorage.setItem("token", response.data.token)
                             navigate("/dashboard")
+                            dispatch(userLoggedIn())
                         }} label={"Sign up"} />
                     </div>
                     <BottomWarning label={"Already have an account?"} buttonText={"Signin"} to={"/signin"} />

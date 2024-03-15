@@ -6,11 +6,15 @@ import Button from '../components/Button'
 import BottomWarning from '../components/BottomWarning'
 import axios from "axios"
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { userLoggedIn } from '../assets/Slices'
 
 const Signin = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const navigate = useNavigate()
+    const dispatch = useDispatch();
+    const isLoggedIn = useSelector(store => store.user.isLoggedIn)
     return (
         <div style={{
             background:
@@ -36,6 +40,7 @@ const Signin = () => {
                             })
                             localStorage.removeItem("token")
                             localStorage.setItem("token", response.data.token)
+                            dispatch(userLoggedIn())
                             navigate("/dashboard")
 
                         }} label={"Sign in"} />

@@ -3,9 +3,13 @@ import Appbar from "../components/AppBar"
 import Balance from "../components/Balance"
 import Users from "../components/Users"
 import axios from "axios"
+import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 
 const Dashboard = () => {
     const [value, setValue] = useState(null); // Initialize value as null
+    const isLoggedIn = useSelector(store => store.user.isLoggedIn)
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,6 +34,9 @@ const Dashboard = () => {
                 {value !== null && <Balance value={value} />}
                 <Users />
             </div>
+            {/* {
+                isLoggedIn ? navigate():na
+            } */}
         </div>
     );
 }
