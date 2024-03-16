@@ -4,7 +4,6 @@ import Signin from "./pages/Signin";
 import Dashboard from "./pages/Dashboard";
 import { useSelector } from 'react-redux';
 import SendMoney from "./pages/SendMoney";
-import store from "./components/Store";
 
 function App() {
   const isLoggedIn = useSelector(store => store.user.isLoggedIn)
